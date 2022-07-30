@@ -1,0 +1,32 @@
+﻿@page "/testpage"
+@*
+public class TestClass
+{
+ public int? ID { get; set; } = 0;
+ public string? Description { get; set; } = string.Empty;
+}
+*@
+<MudDataGrid Items="@TestObjects">
+    <Columns>
+        <Column T="TestClass" Field="ID" />
+        <Column T="TestClass" Field="Description" />
+        <Column T="TestClass">
+            <CellTemplate>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="(() => Edit(context.Item.ID))" />
+                <!-- <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="(() => Edit(7))" /> -->
+            </CellTemplate>
+        </Column>
+
+    </Columns>
+</MudDataGrid>
+@code {
+    private List<TestClass> TestObjects = new List<TestClass>
+    {
+        new TestClass() { ID = 9,Description = "Seven of Nine, Tertiary Adjunct of Unimatrix Zero One"}
+    };
+
+    private void Edit(int? ID)
+    {
+        Console.WriteLine($"The ID is: {ID}");
+    }
+}
